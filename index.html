@@ -4,10 +4,99 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Work in progress</title>
+    <meta name="author" content="Torbjørn Haukås" />
+    <title>Home | GameBlog</title>
+    <meta name="description" content="Just another blog about video games!" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/stylesheet.css" />
+    <!-- This snippet is taken from https://csswizardry.com/2020/05/the-fastest-google-fonts/ -->
+    <!-- [1] -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- [2] -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Nunito:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    />
+    <!-- [3] -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Nunito:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      media="all"
+      onload="this.media='all'"
+    />
+    <!-- [4] -->
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Nunito:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    /></noscript>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
   </head>
   <body>
-    <img src="" alt="" srcset="" />
+    <header>
+      <nav class="navblock">
+        <div class="navblock__upperwrap">
+          <div class="navblock__upper pagewidth">
+            <div class="navblock__barwrap">
+              <a href="#navigation-menu" id="navigation-menu" class="navblock__bars" aria-label="Navigation Menu">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+              </a>
+            </div>
+            <a class="navblock__logowrap" href="index.html"
+              ><img class="navblock__logo" src="./media/logo.svg" alt="GameBlog Logo"
+            /></a>
+          </div>
+        </div>
+        <div class="navblock__relative">
+          <div class="navblock__lower">
+            <ul class="navblock__listblock pagewidth">
+              <li>
+                <a href="index.html" class="navblock__item navblock__item--home navblock__item--active">
+                  <span class="navblock__linktext">Home</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="blog.html" class="navblock__item"
+                  ><span class="navblock__linktext">Blog</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html" class="navblock__item"
+                  ><span class="navblock__linktext">About</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="contact.html" class="navblock__item navblock__item--contact">
+                  <span class="navblock__linktext">Contact</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <header class="hero">
+        <div class="hero__content pagewidth">
+          <div class="hero__backdrop"></div>
+          <div class="hero__textblock">
+            <h1 class="hero__title gigaheader">Changing <span class="gigaheader__spacing">The Game</span></h1>
+            <p class="hero__gibberish bodytext">
+              Cutting through the nonsense of typical game journalism to deliver actual honest reviews, news and anything else
+              gaming&nbsp;related.
+            </p>
+          </div>
+        </div>
+      </header>
+      <section class="featured">
+        <div class="featured__container pagewidth"><h2 class="featured__title sectionheader">Featured Articles</h2></div>
+      </section>
+    </main>
     <script src="./js/script.js"></script>
+    <script src="https://kit.fontawesome.com/ea2405e1e7.js" crossorigin="anonymous"></script>
   </body>
 </html>
