@@ -31,20 +31,20 @@
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Nunito:ital,wght@0,300;0,400;0,700;1,300&display=swap"
     /></noscript>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons.png" />
   </head>
-  <body>
+  <body class="body-home">
     <header>
       <nav class="navblock">
         <div class="navblock__upperwrap">
           <div class="navblock__upper pagewidth">
             <div class="navblock__barwrap">
-              <a href="#navigation-menu" id="navigation-menu" class="navblock__bars" aria-label="Navigation Menu">
+              <div class="navblock__bars" aria-label="Navigation Menu">
                 <span class="bar1"></span>
                 <span class="bar2"></span>
                 <span class="bar3"></span>
-              </a>
+              </div>
             </div>
             <a class="navblock__logowrap" href="index.html"
               ><img class="navblock__logo" src="./media/logo.svg" alt="GameBlog Logo"
@@ -79,19 +79,15 @@
         </div>
       </nav>
     </header>
-    <main>
+    <main class="main-home">
       <header class="hero">
+        <div class="hero__pattern pagewidth"></div>
+        <div class="hero__gradient pagewidth"></div>
         <div class="hero__content pagewidth">
-          <!-- <picture class="hero__imagewrap">
-            <source media="(min-width: 515px)" srcset="media/bubblysvg-thin2.svg" />
-            <source media="(min-width: 746px)" srcset="media/bubblysvg2.svg" />
-            <img class="hero__image" src="media/bubblysvg2.svg" alt="" width="746" height="551" />
-          </picture> -->
-          <!--Empty alt tag as image is decorative. I would use bg-img in css but it is harder to get it responsive-->
           <div class="hero__textblock">
             <h1 class="hero__title gigaheader">Changing <span class="gigaheader__spacing">The&nbsp;Game</span></h1>
             <p class="hero__gibberish bodytext">
-              Cutting through the nonsense of typical game journalism to deliver actual honest reviews and gaming news.
+              Cutting through the nonsense of typical game journalism to deliver actual honest reviews.
             </p>
             <a href="blog.html" class="hero__button buttontext button">Check It Out</a>
           </div>
