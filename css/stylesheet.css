@@ -224,6 +224,7 @@ a {
   font-size: var(--infobig);
 }
 .footertext {
+  color: white;
   font-size: 0.875rem;
   line-height: 150%;
 }
@@ -259,6 +260,7 @@ a {
   color: var(--blue);
 }
 .links span {
+  align-self: baseline;
   margin-left: 6px;
   transition: all 0.25s ease-in-out;
 }
@@ -631,7 +633,6 @@ a {
   white-space: nowrap;
 }
 .section__titleruler {
-  flex-grow: 1;
   align-self: center;
   flex: 1 0 auto;
   border-radius: 4px;
@@ -666,7 +667,6 @@ a {
 
 .article__item,
 .article__textblock {
-  background-color: var(--shadewhite);
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
@@ -722,12 +722,12 @@ a {
   flex-flow: wrap;
 }
 .article__info span {
-  padding-right: 6px;
+  padding-right: 5px;
   color: var(--red);
 }
 .article__author,
 .article__tag {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 .article__title,
 .article__tag {
@@ -738,10 +738,106 @@ a {
   margin-top: 45px;
 }
 @media only screen and (min-width: 767px) {
-  .article__item {
+  .article__item--featured {
     max-width: 570px;
   }
   .article__image {
     min-height: 300px;
   }
+  .article__item:nth-child(4),
+  .article__item:nth-child(3) {
+    padding-bottom: 0;
+  }
+}
+.section__rulerwrap {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.section__buttonwrap {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 15px;
+  min-width: 89px;
+}
+.section__buttonwrap > * {
+  font-size: var(--h2section);
+  padding: 0;
+  line-height: 100%;
+  background: none;
+  border: none;
+}
+.section__buttonwrap > *:hover,
+.section__buttonwrap > *:focus {
+  color: var(--red);
+}
+.button-left {
+  margin-right: 15px;
+}
+.carousel__outer {
+  position: relative;
+  min-height: 430px;
+}
+.carousel__inner {
+  overflow: hidden;
+}
+.carousel__track {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+/* Breakpoints for each time a new box can be included, stretching the ones in view while the viewport grows between each breakpoint */
+/* Since my sidepadding is linearly scaled I have to subtract that formula along with the total width of margins in the viewable portion of the carousel */
+.article__item--latest {
+  margin-right: 20px;
+  min-width: calc(100vw - 30px);
+}
+@media only screen and (min-width: 609.5px) {
+  .article__item--latest {
+    min-width: calc(((100vw - 20px) - 30px) / 2);
+  }
+}
+/* Linear scaling kicks in */
+@media only screen and (min-width: 768px) {
+  .article__item--latest {
+    min-width: calc(((100vw - 20px) - (-210px + 31.25vw)) / 2);
+  }
+}
+@media only screen and (min-width: 1018.5px) {
+  .article__item--latest {
+    min-width: calc(((100vw - 40px) - (-210px + 31.25vw)) / 3);
+  }
+}
+@media only screen and (min-width: 1439.5px) {
+  .article__item--latest {
+    min-width: 285px;
+  }
+  .article__item--latest .article__image {
+    object-position: 60% 50%;
+  }
+}
+.article__item--latest .article__imagewrap {
+  position: relative;
+}
+
+.article__tag--latest {
+  position: absolute;
+  border-radius: 0px 0px 4px 0px;
+}
+.article__textblock--latest {
+  margin-top: 15px;
+  border-bottom: 0;
+}
+
+footer {
+  background-color: var(--black);
+  padding-top: 120px;
+  padding-bottom: 30px;
+}
+footer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
