@@ -25,7 +25,7 @@ for (anchor of anchorArray) {
   anchor.addEventListener("click", noBubble);
 }
 
-// This one doesnt do anything but prevent the dropdown menu from appearing when resizing the window, and was taken from https://css-tricks.com/stop-animations-during-window-resizing/
+// This is just to prevent the dropdown menu from appearing when resizing the window, and was taken from https://css-tricks.com/stop-animations-during-window-resizing/
 
 window.addEventListener("resize", () => {
   document.body.classList.add("resize-animation-stopper");

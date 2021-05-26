@@ -764,14 +764,11 @@ a {
 }
 .section__buttonwrap > * {
   font-size: var(--h2section);
+  color: var(--gray);
   padding: 0;
   line-height: 100%;
   background: none;
   border: none;
-}
-.section__buttonwrap > *:hover,
-.section__buttonwrap > *:focus {
-  color: var(--red);
 }
 .button-left {
   margin-right: 15px;
@@ -779,49 +776,67 @@ a {
 .carousel__outer {
   position: relative;
   min-height: 430px;
-}
-.carousel__inner {
   overflow: hidden;
 }
-.carousel__track {
+.carousel__inner {
+  /* transform: translateX(calc(-340px * 3)); */
+  /* transform: translateX(-340px); */
+  /* left: calc(var(--sidepadding) * -1); */
+  position: absolute;
+  left: -15px;
+  left: calc(var(--sidepadding) * -1);
+  padding: 0 0 0 15px;
+  padding: 0 0 0 var(--sidepadding);
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  transition: transform 0.5s ease;
 }
 
+.show {
+  cursor: pointer;
+  color: var(--black);
+}
+.show:hover {
+  color: var(--red);
+}
 /* Breakpoints for each time a new box can be included, stretching the ones in view while the viewport grows between each breakpoint */
 /* Since my sidepadding is linearly scaled I have to subtract that formula along with the total width of margins in the viewable portion of the carousel */
 .article__item--latest {
-  margin-right: 20px;
+  margin-right: 15px;
   min-width: calc(100vw - 30px);
 }
 @media only screen and (min-width: 609.5px) {
   .article__item--latest {
-    min-width: calc(((100vw - 20px) - 30px) / 2);
+    min-width: calc(((100vw - 15px) - 30px) / 2);
   }
 }
 /* Linear scaling kicks in */
 @media only screen and (min-width: 768px) {
   .article__item--latest {
-    min-width: calc(((100vw - 20px) - (-210px + 31.25vw)) / 2);
+    min-width: calc(((100vw - 15px) - (-210px + 31.25vw)) / 2);
   }
 }
 @media only screen and (min-width: 1018.5px) {
   .article__item--latest {
-    min-width: calc(((100vw - 40px) - (-210px + 31.25vw)) / 3);
+    min-width: calc(((100vw - 30px) - (-210px + 31.25vw)) / 3);
   }
 }
 @media only screen and (min-width: 1439.5px) {
   .article__item--latest {
-    min-width: 285px;
+    min-width: 288.75px;
   }
   .article__item--latest .article__image {
     object-position: 60% 50%;
   }
 }
+
 .article__item--latest .article__imagewrap {
   position: relative;
 }
 
+.article__item--latest:last-child {
+  margin-right: 0px;
+}
 .article__tag--latest {
   position: absolute;
   border-radius: 0px 0px 4px 0px;
@@ -830,7 +845,27 @@ a {
   margin-top: 15px;
   border-bottom: 0;
 }
-
+.carousel__pagecount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.carousel__pagecount > button {
+  border: transparent;
+  margin: 0 5px;
+  background-color: var(--gray);
+  border-radius: 50px;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+}
+.carousel__pagecount > button:hover {
+  background-color: var(--black);
+}
+button.currentpage {
+  background-color: var(--lightblack);
+  cursor: initial;
+}
 footer {
   background-color: var(--black);
   padding-top: 120px;
