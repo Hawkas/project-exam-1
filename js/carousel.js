@@ -101,7 +101,6 @@ right.addEventListener("click", () => {
     }
     tabHandler(pages);
     carouselFull.style.transform = `translateX(-${pages * carouselVisible + modifier}px)`;
-    console.log(pages);
     let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
     let prevPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages})`);
     nextPage.classList.add("currentpage");
@@ -128,7 +127,7 @@ left.addEventListener("click", () => {
     }
     tabHandler(pages);
     carouselFull.style.transform = `translateX(-${pages * carouselVisible + modifier}px)`;
-    console.log(pages);
+
     let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
     let prevPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 2})`);
     nextPage.classList.add("currentpage");

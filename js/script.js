@@ -1,7 +1,7 @@
 const menuBar = document.querySelector(".navblock__bars");
 const listBlock = document.querySelector(".navblock__lower");
 const anchorArray = document.querySelectorAll("a");
-
+let resizeTimer;
 /* To prevent jankiness from link click events */
 function noBubble(e) {
   e.stopPropagation();
