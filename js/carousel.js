@@ -3,7 +3,7 @@ let right = document.querySelector(".button-right");
 let itemContainer = document.querySelector(".article__item--latest");
 let carouselFull = document.querySelector(".carousel__inner");
 let carouselVisible = document.querySelector(".carousel__outer").getBoundingClientRect().width;
-let itemWidth = parseFloat(document.querySelector(".article__item--latest").getBoundingClientRect().width);
+let itemWidth = parseFloat(itemContainer.getBoundingClientRect().width);
 const pageCounter = document.querySelector(".carousel__pagecount");
 // Page count index
 let pages = 0;
@@ -14,8 +14,7 @@ let modifier = 0;
 
 function getPageCount() {
   let perPage = parseInt(carouselVisible / itemWidth);
-  let pageAmount = Math.ceil(carouselFull.offsetWidth / (itemWidth * perPage));
-  console.log(pageAmount);
+  let pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage));
   pageCounter.innerHTML = "";
   for (let i = 1; i <= pageAmount; i++) {
     if (i === 1) {
@@ -25,13 +24,20 @@ function getPageCount() {
     }
   }
 }
-
-getPageCount();
-let pageButtons = document.querySelectorAll(".carousel__pagecount button");
-for (button of pageButtons) {
-  button.addEventListener("click", counterNav);
+function tabHandler(pageNumber) {
+  let perPage = parseInt(carouselVisible / itemWidth);
+  let itemArray = document.querySelectorAll(".article__item--latest");
+  for (item of itemArray) {
+    item.tabIndex = -1;
+  }
+  for (let i = 1; i <= perPage; i++) {
+    let childIndex = perPage * pageNumber + i;
+    if (document.querySelector(`.article__item--latest:nth-child(${childIndex})`)) {
+      document.querySelector(`.article__item--latest:nth-child(${childIndex})`).tabIndex = 0;
+    }
+  }
 }
-console.log(pageButtons);
+tabHandler(pages);
 // Navigate carousel by the page counters
 function counterNav() {
   if (this.classList.contains("currentpage")) return;
@@ -39,45 +45,61 @@ function counterNav() {
     let goal = parseInt(this.dataset.page);
     let mod = marginValue * goal;
 
+    // Setting incremental variables to the current page
     pages = goal;
     modifier = mod;
 
     carouselFull.style.transform = `translateX(-${goal * carouselVisible + mod}px)`;
+    tabHandler(goal);
     for (button of pageButtons) {
       if (button.classList.contains("currentpage")) button.classList.remove("currentpage");
     }
     this.classList.add("currentpage");
-
+    // Correcting the arrow buttons for new page of carousel
     if (goal === pageButtons.length - 1) {
       right.classList.remove("show");
-      if (!left.classList.contains("show")) left.classList.add("show");
+      right.tabIndex = -1;
+      if (!left.classList.contains("show")) {
+        left.classList.add("show");
+        left.tabIndex = 0;
+      }
     }
     // If new page neither first nor last //
     if (goal !== 0 && goal !== pageButtons.length - 1) {
       right.classList.add("show");
+      right.tabIndex = 0;
       left.classList.add("show");
+      left.tabIndex = 0;
     }
     if (goal === 0) {
       left.classList.remove("show");
-      if (!right.classList.contains("show")) right.classList.add("show");
+      left.tabIndex = -1;
+      if (!right.classList.contains("show")) {
+        right.classList.add("show");
+        right.tabIndex = 0;
+      }
       modifier = 0;
     }
   }
 }
-
+getPageCount();
+let pageButtons = document.querySelectorAll(".carousel__pagecount button");
+// console.log(pageButtons);
+for (button of pageButtons) {
+  button.addEventListener("click", counterNav);
+}
 /* Right Button */
 right.addEventListener("click", () => {
-  right = document.querySelector(".button-right");
-  left = document.querySelector(".button-left");
-  if (!right.classList.contains("show")) {
-    return;
-  } else {
+  if (!right.classList.contains("show")) return;
+  else {
     // Increment pages for accurate transform distance
     pages++;
     modifier += marginValue;
     if (!left.classList.contains("show")) {
       left.classList.add("show");
+      left.tabIndex = 0;
     }
+    tabHandler(pages);
     carouselFull.style.transform = `translateX(-${pages * carouselVisible + modifier}px)`;
     console.log(pages);
     let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
@@ -89,43 +111,49 @@ right.addEventListener("click", () => {
     let compareDeficit = carouselFull.getBoundingClientRect().width - pages * carouselVisible - itemWidth;
     if (compareDeficit < carouselVisible) {
       right.classList.remove("show");
+      right.tabIndex = -1;
     }
   }
 });
 
 /* Left button */
 left.addEventListener("click", () => {
-  left = document.querySelector(".button-left");
-  right = document.querySelector(".button-right");
   if (!left.classList.contains("show")) return;
   else {
     pages--;
     modifier -= 15;
     if (!right.classList.contains("show")) {
       right.classList.add("show");
+      right.tabIndex = 0;
     }
+    tabHandler(pages);
     carouselFull.style.transform = `translateX(-${pages * carouselVisible + modifier}px)`;
-  }
-  console.log(pages);
-  let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
-  let prevPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 2})`);
-  nextPage.classList.add("currentpage");
-  prevPage.classList.remove("currentpage");
-  if (pages === 0) {
-    left.classList.remove("show");
-    modifier = 0;
+    console.log(pages);
+    let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
+    let prevPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 2})`);
+    nextPage.classList.add("currentpage");
+    prevPage.classList.remove("currentpage");
+    if (pages === 0) {
+      left.classList.remove("show");
+      left.tabIndex = -1;
+      modifier = 0;
+    }
   }
 });
 
 /* Refresh width values and reset carousel on resize */
 window.addEventListener("resize", () => {
+  /* Update and reset variables */
   carouselFull = document.querySelector(".carousel__inner");
-  carouselFull.style.transform = "translateX(0)";
   carouselVisible = document.querySelector(".carousel__outer").getBoundingClientRect().width;
-  itemWidth = parseFloat(document.querySelector(".article__item--latest").getBoundingClientRect().width);
+  itemContainer = document.querySelector(".article__item--latest");
+  itemWidth = parseFloat(itemContainer.getBoundingClientRect().width);
   marginValue = parseFloat(window.getComputedStyle(itemContainer, null).getPropertyValue("margin-right"));
+  pageButtons = document.querySelectorAll(".carousel__pagecount button");
   modifier = 0;
   pages = 0;
+  carouselFull.style.transform = "translateX(0)";
+  tabHandler(pages);
   if (!right.classList.contains("show")) right.classList.add("show");
   if (left.classList.contains("show")) left.classList.remove("show");
   getPageCount();
@@ -133,4 +161,6 @@ window.addEventListener("resize", () => {
   for (button of pageButtons) {
     button.addEventListener("click", counterNav);
   }
+  left.tabIndex = -1;
+  right.tabIndex = 0;
 });

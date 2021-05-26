@@ -834,7 +834,7 @@ a {
   position: relative;
 }
 
-.article__item--latest:last-child {
+li.article__item--latest:last-child {
   margin-right: 0px;
 }
 .article__tag--latest {
@@ -860,9 +860,10 @@ a {
   cursor: pointer;
 }
 .carousel__pagecount > button:hover {
-  background-color: var(--black);
+  background-color: var(--red);
 }
-button.currentpage {
+button.currentpage,
+button.currentpage:hover {
   background-color: var(--lightblack);
   cursor: initial;
 }
