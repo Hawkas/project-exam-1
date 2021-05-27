@@ -35,7 +35,227 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicons.png" />
   </head>
   <body>
+    <header>
+      <nav class="navblock">
+        <div class="navblock__upperwrap">
+          <div class="navblock__upper pagewidth">
+            <div class="navblock__barwrap">
+              <div class="navblock__bars" aria-label="Navigation Menu">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+              </div>
+            </div>
+            <a class="navblock__logowrap" href="index.html"
+              ><img class="navblock__logo" src="./media/logo.svg" alt="GameBlog Logo"
+            /></a>
+          </div>
+        </div>
+        <div class="navblock__relative">
+          <div class="navblock__lower">
+            <ul class="navblock__listblock pagewidth">
+              <li>
+                <a href="index.html" class="navblock__item navblock__item--home">
+                  <span class="navblock__linktext">Home</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="blog.html" class="navblock__item navblock__item--active"
+                  ><span class="navblock__linktext">Blog</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html" class="navblock__item"
+                  ><span class="navblock__linktext">About</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="contact.html" class="navblock__item navblock__item--contact">
+                  <span class="navblock__linktext">Contact</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="section" aria-labelledby="blogsheader">
+      <div class="section__container section__container--blogs">
+        <header class="section__titleblock section__titleblock--blogs pagewidth">
+          <h1 class="section__title sectionheader" id="blogsheader">All Articles</h1>
+          <div class="section__titleruler"></div>
+        </header>
+        <aside class="filterbar section__contrast" aria-labelledby="filterheader">
+          <div class="pagewidth">
+            <h2 class="visuallyhidden" id="filterheader">Sort & Filter Menu</h2>
+            <div class="filterbar__top">
+              <h3 class="filterbar__head h3small"><span class="fas fa-tags"></span>Filter Tags</h3>
+              <div class="filterbar__buttonflex">
+                <button class="article__tag article__tag--guide tagtext filterbar__buttontag">Guide</button>
+                <button class="article__tag article__tag--opinion tagtext filterbar__buttontag">Opinion</button>
+                <button class="article__tag article__tag--review tagtext filterbar__buttontag">Review</button>
+                <button class="article__tag article__tag--news tagtext filterbar__buttontag">News</button>
+              </div>
+            </div>
+            <div class="filterbar__bottom">
+              <label for="sort">Sort By:</label>
+              <select name="sort" id="sort">
+                <option value="datenew" selected>Date &#40;Newest&#41;</option>
+                <option value="dateold">Date &#40;Oldest&#41;</option>
+                <option value="alphabetdesc">Alphabetically &#40;A-Z&#41;</option>
+                <option value="alphabetasc">Alphabetically &#40;Z-A&#41;</option>
+              </select>
+            </div>
+          </div>
+        </aside>
+        <div class="pagewidth">
+          <ul class="section__articles section__articles--blogs">
+            <li>
+              <article class="article__item article__item--listed">
+                <div class="article__imagewrap">
+                  <img class="article__image" src="/media/hades-1440w.jpg" alt="The API will fill this in" />
+                </div>
+                <div class="article__textblock">
+                  <div class="article__info infotext">
+                    <div class="article__tag article__tag--guide tagtext">Guide</div>
+                    <div class="article__infotext">
+                      <div class="article__author">
+                        <span class="fas fa-user"></span>
+                        <p>KeyboardWarrior7</p>
+                      </div>
+                      <div class="article__date">
+                        <span class="fas fa-calendar-alt"></span>
+                        <p>03 April 2021</p>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="article__title h3big">
+                    <a class="links" href="">Phasmophobia - New Ghosts &amp; More Creepy Stuff</a>
+                  </h3>
+                  <p class="article__excerpt bodytext">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies sed odio quisque quam id sem placerat
+                    consectetur malesuada. Mauris libero dui est viverra enim interdum proin a. Velit varius enim volutpat enim
+                    sit faucibus. Mus sed nibh mauris faucibus lectus leo morbi...
+                  </p>
+                  <a href="" class="article__link links links--blue buttontext">
+                    Read More<span class="fas fa-chevron-right"></span>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="article__item article__item--listed">
+                <div class="article__imagewrap">
+                  <img class="article__image" src="/media/hades-1440w.jpg" alt="The API will fill this in" />
+                </div>
+                <div class="article__textblock">
+                  <div class="article__info infotext">
+                    <div class="article__tag article__tag--guide tagtext">Guide</div>
+                    <div class="article__infotext">
+                      <div class="article__author">
+                        <span class="fas fa-user"></span>
+                        <p>KeyboardWarrior7</p>
+                      </div>
+                      <div class="article__date">
+                        <span class="fas fa-calendar-alt"></span>
+                        <p>03 April 2021</p>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="article__title h3big">
+                    <a class="links" href="">Phasmophobia - New Ghosts &amp; More Creepy Stuff</a>
+                  </h3>
+                  <p class="article__excerpt bodytext">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies sed odio quisque quam id sem placerat
+                    consectetur malesuada. Mauris libero dui est viverra enim interdum proin a. Velit varius enim volutpat enim
+                    sit faucibus. Mus sed nibh mauris faucibus lectus leo morbi...
+                  </p>
+                  <a href="" class="article__link links links--blue buttontext">
+                    Read More<span class="fas fa-chevron-right"></span>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="article__item article__item--listed">
+                <div class="article__imagewrap">
+                  <img class="article__image" src="/media/hades-1440w.jpg" alt="The API will fill this in" />
+                </div>
+                <div class="article__textblock">
+                  <div class="article__info infotext">
+                    <div class="article__tag article__tag--guide tagtext">Guide</div>
+                    <div class="article__infotext">
+                      <div class="article__author">
+                        <span class="fas fa-user"></span>
+                        <p>KeyboardWarrior7</p>
+                      </div>
+                      <div class="article__date">
+                        <span class="fas fa-calendar-alt"></span>
+                        <p>03 April 2021</p>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="article__title h3big">
+                    <a class="links" href="">Phasmophobia - New Ghosts &amp; More Creepy Stuff</a>
+                  </h3>
+                  <p class="article__excerpt bodytext">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies sed odio quisque quam id sem placerat
+                    consectetur malesuada. Mauris libero dui est viverra enim interdum proin a. Velit varius enim volutpat enim
+                    sit faucibus. Mus sed nibh mauris faucibus lectus leo morbi...
+                  </p>
+                  <a href="" class="article__link links links--blue buttontext">
+                    Read More<span class="fas fa-chevron-right"></span>
+                  </a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="article__item article__item--listed">
+                <div class="article__imagewrap">
+                  <img class="article__image" src="/media/hades-1440w.jpg" alt="The API will fill this in" />
+                </div>
+                <div class="article__textblock">
+                  <div class="article__info infotext">
+                    <div class="article__tag article__tag--guide tagtext">Guide</div>
+                    <div class="article__infotext">
+                      <div class="article__author">
+                        <span class="fas fa-user"></span>
+                        <p>KeyboardWarrior7</p>
+                      </div>
+                      <div class="article__date">
+                        <span class="fas fa-calendar-alt"></span>
+                        <p>03 April 2021</p>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="article__title h3big">
+                    <a class="links" href="">Phasmophobia - New Ghosts &amp; More Creepy Stuff</a>
+                  </h3>
+                  <p class="article__excerpt bodytext">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies sed odio quisque quam id sem placerat
+                    consectetur malesuada. Mauris libero dui est viverra enim interdum proin a. Velit varius enim volutpat enim
+                    sit faucibus. Mus sed nibh mauris faucibus lectus leo morbi...
+                  </p>
+                  <a href="" class="article__link links links--blue buttontext">
+                    Read More<span class="fas fa-chevron-right"></span>
+                  </a>
+                </div>
+              </article>
+            </li>
+          </ul>
+          <button class="viewmore buttontext button button--listed">
+            View More <span class="fas fa-chevron-circle-down"></span>
+          </button>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="pagewidth">
+        <p class="footertext">© 2021 Torbjørn Haukås</p>
+      </div>
+    </footer>
     <script src="./js/script.js"></script>
+    <script src="./js/list.js"></script>
     <script src="https://kit.fontawesome.com/ea2405e1e7.js" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -15,6 +15,7 @@
   --sidebar-shadow: 15px -4px 0px rgba(43, 43, 43, 0.25);
 
   /* Paddings */
+  --tinypadding: 15px;
   --sidepadding: 15px;
   --sectionpadding: 60px;
   --internalpadding: 30px;
@@ -59,6 +60,7 @@
     --infosmall: 1rem;
 
     /* Padding */
+    --tinypadding: 30px;
     --sidepadding: 120px;
     --sectionpadding: 120px;
     --internalpadding: 60px;
@@ -80,6 +82,7 @@
     --sidepadding: clamp(15px, -105px + 15.625vw, 120px);
     --sectionpadding: clamp(60px, -8.5712px + 8.9286vw, 120px);
     --internalpadding: clamp(30px, -4.2864px + 4.4643vw, 60px);
+    --tinypadding: clamp(15px, -2.1424px + 2.2321vw, 30px);
   }
 }
 
@@ -240,7 +243,17 @@ a {
   padding: 0 var(--sidepadding);
 }
 /** Universal UI stuff **/
-
+.visuallyhidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+}
 .button {
   color: white;
   padding: 15px 20px;
@@ -250,8 +263,7 @@ a {
   border-radius: 4px;
   transition: all 0.25s ease-in-out;
 }
-.button:hover,
-.button:focus {
+.button:hover {
   background-color: rgba(56, 136, 201, 0.8);
   box-shadow: none;
   transform: translateY(4px);
@@ -597,6 +609,29 @@ a {
 .hero__gibberish {
   margin-bottom: 60px;
 }
+@keyframes WhiteBoard {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+/* I don't want this thing, it's just a band-aid to prevent the initial blitz when the background color loads before the SVG renders */
+/* I would've swapped out the entire thing but it's a bit late for it now */
+.hero__whiteboard {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1;
+  animation: WhiteBoard 2s ease-in-out 1s forwards;
+}
 @media only screen and (min-width: 767px) {
   .hero__content {
     padding-top: 0;
@@ -699,15 +734,19 @@ a {
 }
 .article__tag--guide {
   background-color: var(--purple);
+  border: 1px solid var(--purple);
 }
 .article__tag--news {
   background-color: var(--orange);
+  border: 1px solid var(--orange);
 }
 .article__tag--review {
   background-color: var(--green);
+  border: 1px solid var(--green);
 }
 .article__tag--opinion {
   background-color: var(--lightblack);
+  border: 1px solid var(--lightblack);
 }
 .article__info {
   margin-bottom: 7.5px;
@@ -738,7 +777,8 @@ a {
   margin-top: 45px;
 }
 @media only screen and (min-width: 767px) {
-  .article__item--featured {
+  .article__item--featured,
+  .article__item--listed {
     max-width: 570px;
   }
   .article__image {
@@ -876,4 +916,106 @@ footer div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.button--listed {
+  border: transparent;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  margin-top: var(--internalpadding);
+}
+.viewmore span {
+  transition: all 0.8s ease;
+  border-radius: 25px;
+  width: 28px;
+  height: 28px;
+  color: var(--green);
+  position: absolute;
+  font-size: 28px;
+  bottom: -24px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.viewless {
+  box-shadow: 0px -4px 0px rgba(56, 136, 201, 0.4);
+}
+.viewless span {
+  bottom: initial;
+  top: -24px;
+  transform: rotate(180deg);
+}
+.section__titleblock--blogs {
+  margin: 0 auto;
+}
+.filterbar {
+  padding: 30px 0;
+}
+.filterbar__head > span {
+  color: var(--red);
+  margin-right: 10px;
+}
+.filterbar__buttontag {
+  min-width: 103.82px;
+  max-width: 103.82px;
+  border-width: 3px;
+  border-radius: 6px;
+  color: var(--lightblack);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filterbar__buttontag:hover {
+  color: white;
+}
+button.article__tag--review:hover {
+  background: rgba(0, 228, 125, 0.7);
+}
+button.article__tag--opinion:hover {
+  background: rgba(43, 43, 43, 0.7);
+}
+button.article__tag--guide:hover {
+  background: rgba(175, 66, 174, 0.7);
+}
+button.article__tag--news:hover {
+  background: rgba(255, 134, 65, 0.7);
+}
+.filterbar__buttonflex {
+  margin-top: var(--tinypadding);
+  display: flex;
+}
+.filterbar > div {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+.filterbar__bottom label {
+  font-size: var(--bodybutton);
+  font-family: "Lato", Arial, sans-serif;
+}
+#sort {
+  position: relative;
+  background-color: white;
+  border: 1px solid #949494;
+  border-radius: 4px;
+  padding: 10px 15px 10px 5px;
+  font-size: var(--bodysmall);
+  color: var(--gray);
+  line-height: auto;
+}
+#sort::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-color: var(--lightblack);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+.section__articles--blogs {
+  padding-top: var(--internalpadding);
 }
