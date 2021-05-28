@@ -17,7 +17,7 @@ for (let i = 0; i < 5; i++) {
   out.innerHTML += `<li style="display: none;" data-info="added">
   <article class="article__item article__item--listed">
     <div class="article__imagewrap">
-      <img class="article__image" src="/media/hades-1440w.jpg" alt="The API will fill this in" />
+      <img class="article__image article__image--listed" src="/media/hades-1440w.jpg" alt="The API will fill this in" />
     </div>
     <div class="article__textblock">
       <div class="article__info infotext">

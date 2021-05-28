@@ -236,6 +236,8 @@ a {
   font-size: 2rem;
 }
 
+/** Universal UI stuff **/
+
 .pagewidth {
   max-width: 1440px;
   width: 100%;
@@ -243,7 +245,6 @@ a {
   padding: 0 15px;
   padding: 0 var(--sidepadding);
 }
-/** Universal UI stuff **/
 .visuallyhidden {
   border: 0;
   clip: rect(0, 0, 0, 0);
@@ -491,13 +492,16 @@ a {
   }
 }
 
-/* Home Page Content */
+/** Home page hero header **/
 .main-home {
   position: relative;
   z-index: -2;
 }
 .main-home > * {
   z-index: 1;
+}
+.main--post {
+  position: relative;
 }
 .hero {
   position: relative;
@@ -626,7 +630,7 @@ a {
     opacity: 0.3;
   }
 }
-/* I don't want this thing, it's just a band-aid to prevent the initial blitz when the background color loads before the SVG renders */
+/* Band-aid to prevent the initial blitz if the background color renders before the SVG does on pageload */
 /* I would've swapped out the entire thing but it's a bit late for it now */
 .hero__whiteboard {
   background-color: white;
@@ -720,19 +724,23 @@ a {
 .article__image {
   max-width: 100%;
   width: auto;
-  min-height: 230px;
   height: auto;
-  max-height: 300px;
   object-fit: cover;
   object-position: center;
   border-radius: 4px;
+}
+.article__image--featured,
+.article__image--latest,
+.article__image--listed {
+  min-height: 230px;
+  max-height: 300px;
 }
 .article__textblock {
   width: 100%;
   margin-top: 30px;
   padding-bottom: 45px;
   padding-bottom: var(--internalpadding);
-  border-bottom: 1px solid var(--gray);
+  border-bottom: 1px solid rgba(148, 148, 148, 0.5);
 }
 .article__tag {
   padding: 5px 15px;
@@ -763,6 +771,12 @@ a {
   display: flex;
   align-items: baseline;
 }
+.article__info--post {
+  margin-bottom: var(--tinypadding);
+}
+.article__info--post .article__author {
+  margin-right: var(--internalpadding);
+}
 .article__info {
   flex-flow: wrap;
 }
@@ -791,14 +805,21 @@ a {
   .article__item--listed {
     max-width: 570px;
   }
-  .article__image {
+  .article__image--featured,
+  .article__image--latest,
+  .article__image--listed {
     min-height: 300px;
   }
-  .article__item:nth-child(4),
-  .article__item:nth-child(3) {
+  .article__item--featured:nth-child(4),
+  .article__item--featured:nth-child(3),
+  .article__item--listed:nth-child(4),
+  .article__item--listed:nth-child(3) {
     padding-bottom: 0;
   }
 }
+
+/** Carousel **/
+
 .section__rulerwrap {
   flex-grow: 1;
   display: flex;
@@ -829,9 +850,6 @@ a {
   overflow: hidden;
 }
 .carousel__inner {
-  /* transform: translateX(calc(-340px * 3)); */
-  /* transform: translateX(-340px); */
-  /* left: calc(var(--sidepadding) * -1); */
   position: absolute;
   left: -15px;
   left: calc(var(--sidepadding) * -1);
@@ -887,7 +905,8 @@ a {
 li.article__item--latest:last-child {
   margin-right: 0px;
 }
-.article__tag--latest {
+.article__tag--latest,
+.article__tag--similar {
   position: absolute;
   border-radius: 0px 0px 4px 0px;
 }
@@ -895,6 +914,34 @@ li.article__item--latest:last-child {
   margin-top: 15px;
   border-bottom: 0;
 }
+
+.article__image--similar {
+  width: 100%;
+  height: 166px;
+  max-height: 300px;
+}
+.article__textblock--similar {
+  margin-top: 15px;
+  padding-bottom: 30px;
+}
+.article__title--similar {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+.article__tag--similar {
+  border-radius: 4px 0px 4px 0px;
+}
+.article__linkwrap {
+  display: block;
+}
+.article__linkwrap > * {
+  transition: transform 0.5s ease;
+}
+.article__linkwrap:hover ~ .article__textblock--similar .links {
+  text-decoration: underline;
+}
+
 .carousel__pagecount {
   display: flex;
   justify-content: center;
@@ -917,16 +964,8 @@ button.currentpage:hover {
   background-color: var(--lightblack);
   cursor: initial;
 }
-footer {
-  background-color: var(--black);
-  padding-top: 120px;
-  padding-bottom: 30px;
-}
-footer div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
+/** Blog List - Filter&Sort Bar + Buttons **/
 .button--listed {
   border: transparent;
   display: block;
@@ -959,6 +998,7 @@ footer div {
 .section__titleblock--blogs {
   margin: 0 auto;
 }
+
 .filterbar {
   padding: 30px 0;
 }
@@ -1053,7 +1093,7 @@ button.article__tag--news.buttontag--active {
   padding-top: var(--internalpadding);
 }
 
-/** Full Articles + About/Contact **/
+/** Full Articles, Sidebar **/
 .fullcontent {
   overflow: hidden;
   background-color: var(--shadewhite);
@@ -1081,6 +1121,7 @@ button.article__tag--news.buttontag--active {
   object-fit: cover;
   object-position: 60% 70%;
 }
+
 .fullcontent__article {
   z-index: 1;
   flex-grow: 3;
@@ -1088,6 +1129,9 @@ button.article__tag--news.buttontag--active {
   max-width: 934px;
   margin: 0;
   padding: var(--sectionpadding) var(--sidepadding);
+}
+.fullcontent__article--post {
+  padding-top: var(--internalpadding);
 }
 .fullcontent__sidebar {
   position: relative;
@@ -1098,7 +1142,9 @@ button.article__tag--news.buttontag--active {
   /* box-shadow: -4px 0px 15px rgba(43, 43, 43, 0.25); */
   padding: var(--sectionpadding) var(--sidepadding);
 }
-
+.fullcontent__sidebar--post {
+  padding-top: var(--internalpadding);
+}
 .fullcontent__sidebar,
 .fullcontent__article {
   flex-basis: calc((850px - 100%) * 999);
@@ -1114,7 +1160,7 @@ button.article__tag--news.buttontag--active {
 .fullcontent__title,
 .sidebar__title {
   position: relative;
-  padding-bottom: var(--tinypadding);
+  padding-bottom: var(--internalpadding);
   /* border-bottom: 1px solid #949494; */
   margin-bottom: var(--internalpadding);
 }
@@ -1140,6 +1186,10 @@ button.article__tag--news.buttontag--active {
   white-space: nowrap;
   border-width: 4px;
   color: var(--red);
+}
+.sidebar__title--post {
+  display: flex;
+  align-items: flex-end;
 }
 .fullcontent__bodytext > p {
   margin-bottom: 30px;
@@ -1204,6 +1254,31 @@ button.article__tag--news.buttontag--active {
 .sidebar__link--steam span {
   color: #151210;
 }
+
+.sidebar__similarlist {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+.sidebar__similarlist > * {
+  margin-bottom: 30px;
+}
+.sidebar__similarlist > li:nth-child(4) article > div {
+  border-bottom: none;
+}
+@media only screen and (max-width: 849.5px) and (min-width: 500px) {
+  .sidebar__similarlist > * {
+    max-width: calc(((100vw - 60px) / 2));
+  }
+  .sidebar__similarlist > li:nth-child(3) article > div {
+    border-bottom: none;
+  }
+}
+@media only screen and (max-width: 849.5px) and (min-width: 768px) {
+  .sidebar__similarlist > * {
+    max-width: calc(((100vw - 30px) - (-210px + 31.25vw)) / 2);
+  }
+}
 @media only screen and (min-width: 645px) {
   .sidebar__socialslist > * {
     flex: none;
@@ -1216,6 +1291,9 @@ button.article__tag--news.buttontag--active {
   }
 }
 @media only screen and (min-width: 849.5px) {
+  .sidebar__similarlist > * {
+    max-width: unset;
+  }
   .fullcontent__sidebar {
     padding-left: var(--sectionpadding);
   }
@@ -1245,6 +1323,56 @@ button.article__tag--news.buttontag--active {
   }
 }
 
+/*? Modal stuff ?*/
+
+.modal__backdrop {
+  display: none;
+  background: var(--black);
+  position: fixed;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+}
+.modal__close {
+  display: none;
+}
+.modal--active .modal__close {
+  display: inline-block;
+  font-size: 25px;
+  background: var(--black);
+  border: 2px solid white;
+  padding: 15px 25px;
+  font-family: "Lato", Arial, sans-serif;
+  border-radius: 25px;
+  z-index: 7;
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: white;
+  cursor: pointer;
+}
+.modal--active .modal__close:hover {
+  background: var(--lightblack);
+}
+.modal--active .modal__wrap {
+  max-width: 100vw;
+  max-height: 100vh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 6;
+}
+.modal--active .modal__imagewrap img {
+  border-radius: 0;
+  object-fit: contain;
+  /* Task said to make it bigger, so.. */
+  transform: scale(1.05);
+}
+.modal__imagewrap img {
+  cursor: pointer;
+}
 /** Contact Form **/
 
 .contact__input-wrap {
@@ -1352,4 +1480,17 @@ textarea {
     min-width: calc(100vw - 30px);
     max-width: calc(100vw - 30px);
   }
+}
+
+/* "Footer" :P */
+
+footer {
+  background-color: var(--black);
+  padding-top: 120px;
+  padding-bottom: 30px;
+}
+footer div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

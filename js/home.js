@@ -117,7 +117,7 @@ right.addEventListener("click", () => {
 
     // If the multiplied width of the translate value, minus width of an item, is higher than the full carousel, disable the button.
     let compareDeficit = carouselFull.getBoundingClientRect().width - pages * carouselVisible - itemWidth;
-    console.log(compareDeficit);
+    // console.log(compareDeficit);
     if (compareDeficit < carouselVisible) {
       right.classList.remove("show");
       right.tabIndex = -1;
@@ -130,7 +130,7 @@ left.addEventListener("click", () => {
   if (!left.classList.contains("show")) return;
   else {
     pages--;
-    modifier -= 15;
+    modifier -= marginValue;
     if (!right.classList.contains("show")) {
       right.classList.add("show");
       right.tabIndex = 0;
