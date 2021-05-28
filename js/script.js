@@ -1,5 +1,6 @@
 const menuBar = document.querySelector(".navblock__bars");
 const listBlock = document.querySelector(".navblock__lower");
+const header = document.querySelector("body > header");
 const anchorArray = document.querySelectorAll("a");
 let resizeTimer;
 /* To prevent jankiness from link click events */
@@ -10,6 +11,7 @@ function noBubble(e) {
 function openMenu() {
   menuBar.classList.toggle("switch");
   listBlock.classList.toggle("hide");
+  header.classList.toggle("sticky");
 }
 // Hide menu when pressing on the opaque bg
 listBlock.addEventListener("click", function () {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Torbjørn Haukås" />
     <title>About | GameBlog</title>
-    <meta name="description" content="About a man who plays video games" />
+    <meta name="description" content="A story about a man who plays video games" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/stylesheet.css" />
     <!-- This snippet is taken from https://csswizardry.com/2020/05/the-fastest-google-fonts/ -->
@@ -35,6 +35,120 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicons.png" />
   </head>
   <body>
+    <header>
+      <nav class="navblock">
+        <div class="navblock__upperwrap">
+          <div class="navblock__upper pagewidth">
+            <div class="navblock__barwrap">
+              <div class="navblock__bars" aria-label="Navigation Menu">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+              </div>
+            </div>
+            <a class="navblock__logowrap" href="index.html"
+              ><img class="navblock__logo" src="./media/logo.svg" alt="GameBlog Logo"
+            /></a>
+          </div>
+        </div>
+        <div class="navblock__relative">
+          <div class="navblock__lower">
+            <ul class="navblock__listblock pagewidth">
+              <li>
+                <a href="index.html" class="navblock__item navblock__item--home">
+                  <span class="navblock__linktext">Home</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="blog.html" class="navblock__item"
+                  ><span class="navblock__linktext">Blog</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html" class="navblock__item navblock__item--active"
+                  ><span class="navblock__linktext">About</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="contact.html" class="navblock__item navblock__item--contact">
+                  <span class="navblock__linktext">Contact</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main--about fullcontent">
+      <picture class="fullcontent__imagewrap">
+        <source media="(max-width: 500px)" srcset="./media/someguy-500w.jpg" />
+        <source media="(max-width: 720px)" srcset="./media/someguy-720w.jpg" />
+        <source media="(min-width: 720px)" srcset="./media/someguy-1440w.jpg" />
+        <img src="./media/someguy-720w" alt="Man who clearly plays games in front of a computer" class="fullcontent__image" />
+      </picture>
+      <div class="fullcontent__container">
+        <div class="fullcontent__article">
+          <h1 class="fullcontent__title blogheader">Who Am I?</h1>
+          <div class="fullcontent__bodytext fullcontent__bodytext--about bodytext--large">
+            <p>
+              Not the guy in this picture, that’s for sure. I found that guy on a stock photo website. Sadly I don’t have a good
+              image of myself on hand, and my only camera is a busted smartphone, so you’ll have to do with that guy without a
+              mousepad up there.
+            </p>
+            <p>
+              You might’ve noticed this site doesn’t actually have any articles of substance whatsoever. In fact, they’re all
+              lorem ipsum. That’s because this is a dummy site, dummy. Indeed, I made this for a school project. No article will
+              ever be posted here.
+            </p>
+            <p>
+              Anyway, I play games every now and then which is pretty cool. I started studying front-end during the pandemic,
+              which has been one big downward spiral. A bad time to be a student or a teacher, that’s for sure. I like dogs more
+              than cats, I have no interest in sports &#40;which should give you an idea of how I look&#41;, and I listen to all
+              kinds of music but mostly metal and alternative rock. Oh, and my favorite color is blue.
+            </p>
+            <p>Best regards,</p>
+            <p>Torbjørn Haukås</p>
+          </div>
+        </div>
+        <aside class="fullcontent__sidebar section__contrast">
+          <div class="sidebar">
+            <h2 class="sidebar__title asideheader">Get In Touch</h2>
+            <div class="sidebar__links">
+              <a href="contact.html" class="sidebar__button button buttontext">Contact Me</a>
+              <ul class="sidebar__socialslist">
+                <li>
+                  <a href="https://www.facebook.com" class="sidebar__link sidebar__link--facebook links">
+                    <span class="fab fa-facebook"></span>Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.twitter.com" class="sidebar__link sidebar__link--twitter links">
+                    <span class="fab fa-twitter-square"></span>Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.discord.com" class="sidebar__link sidebar__link--discord links">
+                    <span class="fab fa-discord"></span>Discord
+                  </a>
+                </li>
+                <li>
+                  <a href="https://store.steampowered.com" class="sidebar__link sidebar__link--steam links">
+                    <span class="fab fa-steam"></span>Steam
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer>
+      <div class="pagewidth">
+        <p class="footertext">© 2021 Torbjørn Haukås</p>
+      </div>
+    </footer>
+    <script src="./js/script.js"></script>
+    <script src="./js/postpage.js"></script>
     <script src="https://kit.fontawesome.com/ea2405e1e7.js" crossorigin="anonymous"></script>
   </body>
 </html>

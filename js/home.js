@@ -13,8 +13,16 @@ let marginValue = parseFloat(window.getComputedStyle(itemContainer, null).getPro
 let modifier = 0;
 
 function getPageCount() {
-  let perPage = parseInt(carouselVisible / itemWidth);
-  let pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage));
+  let perPage = Math.round(carouselVisible / (itemWidth + marginValue));
+  // To account for the width accurately I need to add the margins to each item, but only the ones between the visible items per page.
+  let pageAmount = carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage);
+  // An item would be unreachable sometimes due to the rounding, so I have to manually make sure it rounds up on certain values only.
+  // I want it to round up on 0.4 or 0.2 sometimes but not on 0.1. So I tried my hand at regEx and wrote this expression myself lol
+  if (/[1-9]\.[2-9][0-9]+/.test(pageAmount.toString())) {
+    pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
+  } else {
+    pageAmount = Math.round(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
+  }
   pageCounter.innerHTML = "";
   for (let i = 1; i <= pageAmount; i++) {
     if (i === 1) {
@@ -27,6 +35,7 @@ function getPageCount() {
 function tabHandler(pageNumber) {
   let perPage = parseInt(carouselVisible / itemWidth);
   let itemArray = document.querySelectorAll(".article__item--latest");
+  // console.log(itemArray.length % perPage);
   for (item of itemArray) {
     item.tabIndex = -1;
   }
@@ -108,6 +117,7 @@ right.addEventListener("click", () => {
 
     // If the multiplied width of the translate value, minus width of an item, is higher than the full carousel, disable the button.
     let compareDeficit = carouselFull.getBoundingClientRect().width - pages * carouselVisible - itemWidth;
+    console.log(compareDeficit);
     if (compareDeficit < carouselVisible) {
       right.classList.remove("show");
       right.tabIndex = -1;

@@ -1,6 +1,18 @@
 const out = document.querySelector(".section__articles--blogs");
 const button = document.querySelector(".button--listed");
-
+const buttonTagArray = document.querySelectorAll(".filterbar__buttontag");
+function setActive() {
+  if (this.classList.contains("buttontag--active")) {
+    this.classList.toggle("buttontag--active");
+  } else {
+    for (buttonTag of buttonTagArray) {
+      if (buttonTag.classList.contains("buttontag--active")) {
+        buttonTag.classList.toggle("buttontag--active");
+      }
+    }
+    this.classList.toggle("buttontag--active");
+  }
+}
 for (let i = 0; i < 5; i++) {
   out.innerHTML += `<li style="display: none;" data-info="added">
   <article class="article__item article__item--listed">
@@ -37,7 +49,7 @@ for (let i = 0; i < 5; i++) {
 </li>`;
 }
 function viewMore() {
-  let listArray = document.querySelectorAll(".section__articles--listed li");
+  let listArray = document.querySelectorAll(".section__articles--blogs li");
   console.log(listArray);
   if (button.classList.contains("viewmore")) {
     for (list of listArray) {
@@ -57,3 +69,6 @@ function viewMore() {
   } else button.innerHTML = `View More <span class="fas fa-chevron-circle-down"></span>`;
 }
 button.addEventListener("click", viewMore);
+for (buttonTag of buttonTagArray) {
+  buttonTag.addEventListener("click", setActive);
+}

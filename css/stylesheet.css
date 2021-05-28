@@ -161,6 +161,7 @@ a {
   letter-spacing: 0.05em;
 }
 .blogheader {
+  color: var(--black);
   font-size: var(--h1small);
   line-height: 100%;
 }
@@ -271,7 +272,7 @@ a {
 .links--blue {
   color: var(--blue);
 }
-.links span {
+.links--blue span {
   align-self: baseline;
   margin-left: 6px;
   transition: all 0.25s ease-in-out;
@@ -281,9 +282,9 @@ a {
   color: var(--black);
   text-decoration: underline;
 }
-.links:hover span,
-.links:focus span {
-  margin-left: 12px;
+.links--blue:hover span,
+.links--blue:focus span {
+  transform: translateX(12px);
 }
 
 /*! Masthead/Navigation **/
@@ -371,6 +372,11 @@ a {
   display: none;
 }
 @media only screen and (max-width: 767px) {
+  .sticky {
+    position: sticky;
+    z-index: 3;
+    top: 0;
+  }
   .navblock__barwrap {
     display: block;
     min-height: 32px;
@@ -776,7 +782,11 @@ a {
   align-self: flex-start;
   margin-top: 45px;
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 768px) {
+  .section__articles > li {
+    max-width: 47.3449102962%;
+    max-width: clamp(354px, 47.3449102962%, 570px);
+  }
   .article__item--featured,
   .article__item--listed {
     max-width: 570px;
@@ -803,7 +813,7 @@ a {
   min-width: 89px;
 }
 .section__buttonwrap > * {
-  font-size: var(--h2section);
+  font-size: var(--h3main);
   color: var(--gray);
   padding: 0;
   line-height: 100%;
@@ -958,7 +968,8 @@ footer div {
 }
 .filterbar__buttontag {
   min-width: 103.82px;
-  max-width: 103.82px;
+  flex-grow: 1;
+  flex-basis: 45%;
   border-width: 3px;
   border-radius: 6px;
   color: var(--lightblack);
@@ -982,9 +993,31 @@ button.article__tag--guide:hover {
 button.article__tag--news:hover {
   background: rgba(255, 134, 65, 0.7);
 }
+button.buttontag--active,
+button.buttontag--active:hover {
+  color: white;
+}
+button.article__tag--review.buttontag--active {
+  background: rgba(0, 228, 125, 1);
+}
+button.article__tag--opinion.buttontag--active {
+  background: rgba(43, 43, 43, 1);
+}
+button.article__tag--guide.buttontag--active {
+  background: rgba(175, 66, 174, 1);
+}
+button.article__tag--news.buttontag--active {
+  background: rgba(255, 134, 65, 1);
+}
 .filterbar__buttonflex {
   margin-top: var(--tinypadding);
   display: flex;
+  flex-flow: wrap;
+}
+.filterbar__buttonflex > * {
+  flex-grow: 1;
+  display: flex;
+  flex-basis: calc((455px - 100%) * 999);
 }
 .filterbar > div {
   display: flex;
@@ -1018,4 +1051,261 @@ button.article__tag--news:hover {
 }
 .section__articles--blogs {
   padding-top: var(--internalpadding);
+}
+
+/** Full Articles + About/Contact **/
+.fullcontent {
+  overflow: hidden;
+  background-color: var(--shadewhite);
+}
+.fullcontent__container {
+  position: relative;
+  display: flex;
+  flex-flow: wrap;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.fullcontent__imagewrap {
+  display: flex;
+  justify-content: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.fullcontent__image {
+  z-index: 1;
+  min-height: 300px;
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  object-fit: cover;
+  object-position: 60% 70%;
+}
+.fullcontent__article {
+  z-index: 1;
+  flex-grow: 3;
+  background-color: white;
+  max-width: 934px;
+  margin: 0;
+  padding: var(--sectionpadding) var(--sidepadding);
+}
+.fullcontent__sidebar {
+  position: relative;
+  z-index: 0;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  /* box-shadow: -4px 0px 15px rgba(43, 43, 43, 0.25); */
+  padding: var(--sectionpadding) var(--sidepadding);
+}
+
+.fullcontent__sidebar,
+.fullcontent__article {
+  flex-basis: calc((850px - 100%) * 999);
+}
+.sidebar {
+  flex-grow: 1;
+  margin: 0;
+}
+/* The W looks off due to its sharp edge, so I'm adjusting it to be more optically correct */
+.main--about .fullcontent__title {
+  transform: translateX(-2px);
+}
+.fullcontent__title,
+.sidebar__title {
+  position: relative;
+  padding-bottom: var(--tinypadding);
+  /* border-bottom: 1px solid #949494; */
+  margin-bottom: var(--internalpadding);
+}
+.fullcontent__title::after,
+.sidebar__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #949494;
+  opacity: 0.3;
+  height: 1px;
+  width: 100%;
+  border-radius: 4px;
+  transform: translateX(2px);
+}
+.sidebar__title::after {
+  height: 4px;
+  transform: translateX(0);
+}
+.sidebar__title {
+  white-space: nowrap;
+  border-width: 4px;
+  color: var(--red);
+}
+.fullcontent__bodytext > p {
+  margin-bottom: 30px;
+}
+.fullcontent__bodytext--about > p:nth-child(3) {
+  margin-bottom: var(--sectionpadding);
+}
+.fullcontent__bodytext--about p:last-child {
+  font-style: italic;
+}
+.sidebar__socialslist {
+  font-size: 1.563rem;
+  /* max-width: 388px; */
+  font-family: "Lato", Arial, sans-serif;
+  font-weight: 400;
+  color: var(--black);
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+.sidebar__socialslist > * {
+  flex-basis: 50%;
+  min-width: 125px;
+  max-width: 177px;
+}
+.sidebar__socialslist > li:nth-child(even) a {
+  position: relative;
+  right: -20%;
+  margin-right: 0;
+}
+.sidebar__socialslist > li:nth-child(even) {
+  max-width: 100%;
+}
+
+.sidebar__button {
+  display: inline-block;
+  margin-bottom: 60px;
+}
+.sidebar__socialslist > li {
+  margin-bottom: 30px;
+}
+.sidebar__link {
+  white-space: nowrap;
+  margin-right: 20px;
+}
+.sidebar__link span {
+  margin-right: 10px;
+  min-width: 25px;
+  max-width: 25px;
+  min-height: 25px;
+  max-height: 25px;
+}
+.sidebar__link--facebook span {
+  color: #4267b2;
+}
+.sidebar__link--twitter span {
+  color: #1da1f2;
+}
+.sidebar__link--discord span {
+  color: #738adb;
+}
+.sidebar__link--steam span {
+  color: #151210;
+}
+@media only screen and (min-width: 645px) {
+  .sidebar__socialslist > * {
+    flex: none;
+    min-width: 125px;
+    max-width: 177px;
+  }
+  .sidebar__socialslist > li:nth-child(even) a {
+    margin-right: 20px;
+    position: static;
+  }
+}
+@media only screen and (min-width: 849.5px) {
+  .fullcontent__sidebar {
+    padding-left: var(--sectionpadding);
+  }
+  .fullcontent__article {
+    padding-right: var(--sectionpadding);
+    box-shadow: -4px 0px 15px rgba(43, 43, 43, 0.15), 4px 0px 15px rgba(43, 43, 43, 0.15);
+  }
+  .sidebar__links {
+    max-width: 180px;
+  }
+  .fullcontent__image {
+    border-radius: 0 0 300px 0;
+    box-shadow: -4px 0px 15px rgba(43, 43, 43, 0.15), 0px 8px 15px rgba(43, 43, 43, 0.25);
+  }
+  .fullcontent__sidebar::after {
+    z-index: -2;
+    content: "";
+    position: absolute;
+    background-color: var(--shadewhite);
+    height: 200%;
+    width: 100%;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 4px 0px 15px rgba(43, 43, 43, 0.15);
+  }
+}
+
+/** Contact Form **/
+
+.contact__input-wrap {
+  display: flex;
+  flex-flow: column;
+}
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: calc(15px * -1);
+  max-width: 694px;
+}
+.contact > * {
+  max-width: 100%;
+}
+.contact__fieldset {
+  flex-grow: 1;
+  flex-basis: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-self: stretch;
+}
+.contact__label {
+  margin-bottom: 5px;
+  color: var(--lightblack);
+}
+.contact__input-wrap {
+  flex-basis: 100%;
+  flex-grow: 1;
+}
+
+.contact__button {
+  border: none;
+}
+.contact__input-wrap,
+.contact__button,
+.contact__success {
+  margin: 15px;
+}
+.contact__input-wrap--name,
+.contact__input-wrap--email {
+  flex-basis: calc((600px - 100%) * 999);
+}
+.contact__input-text {
+  flex-grow: 1;
+  border: 1px solid rgba(43, 43, 43, 0.3);
+  background-color: #fafafa;
+  font-family: "Nunito", Arial, sans-serif;
+  font-size: var(--bodysmall);
+  color: var(--black);
+  min-height: 40px;
+  padding: 15px 15px 10px;
+  border-radius: 4px;
+}
+@media only screen and (max-width: 360px) {
+  /* I'm stumped as to why I have to do this, but I can't get these damn boxes to behave as I want them to */
+  .contact__input-text,
+  .contact__fieldset,
+  .contact {
+    min-width: calc(100vw - 30px);
+    max-width: calc(100vw - 30px);
+  }
 }

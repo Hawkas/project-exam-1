@@ -35,6 +35,131 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicons.png" />
   </head>
   <body>
+    <header>
+      <nav class="navblock">
+        <div class="navblock__upperwrap">
+          <div class="navblock__upper pagewidth">
+            <div class="navblock__barwrap">
+              <div class="navblock__bars" aria-label="Navigation Menu">
+                <span class="bar1"></span>
+                <span class="bar2"></span>
+                <span class="bar3"></span>
+              </div>
+            </div>
+            <a class="navblock__logowrap" href="index.html"
+              ><img class="navblock__logo" src="./media/logo.svg" alt="GameBlog Logo"
+            /></a>
+          </div>
+        </div>
+        <div class="navblock__relative">
+          <div class="navblock__lower">
+            <ul class="navblock__listblock pagewidth">
+              <li>
+                <a href="index.html" class="navblock__item navblock__item--home">
+                  <span class="navblock__linktext">Home</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="blog.html" class="navblock__item"
+                  ><span class="navblock__linktext">Blog</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html" class="navblock__item"
+                  ><span class="navblock__linktext">About</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+              <li>
+                <a href="contact.html" class="navblock__item navblock__item--contact navblock__item--active">
+                  <span class="navblock__linktext">Contact</span><span class="fas fa-chevron-right"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main--contact fullcontent">
+      <div class="fullcontent__container">
+        <div class="fullcontent__article fullcontent__article--contact">
+          <h1 class="fullcontent__title fullcontent__title--contact blogheader">Contact Me</h1>
+          <form action="submit" class="fullcontent__contact contact" method="GET" id="contact-form">
+            <fieldset class="contact__fieldset">
+              <legend class="visuallyhidden">Personal Details</legend>
+              <div class="contact__input-wrap contact__input-wrap--name">
+                <label for="name" class="contact__label h3small">Your Name:</label>
+                <input type="text" name="name" id="name" class="contact__input-text" placeholder="Enter your name" />
+              </div>
+              <div class="contact__input-wrap contact__input-wrap--email">
+                <label for="email" class="contact__label h3small">Your Email:</label>
+                <input type="email" name="email" id="email" class="contact__input-text" placeholder="Enter your email address" />
+              </div>
+            </fieldset>
+            <fieldset class="contact__fieldset">
+              <legend class="visuallyhidden">Message Details</legend>
+              <div class="contact__input-wrap contact__input-wrap--subject">
+                <label for="subject" class="contact__label h3small">Subject:</label>
+                <input
+                  type="text"
+                  name="subject"
+                  id="subject"
+                  class="contact__input-text"
+                  placeholder="Why are you contacting me?"
+                />
+              </div>
+              <div class="contact__input-wrap contact__input-wrap--message">
+                <label for="message" class="contact__label h3small">Message:</label>
+                <textarea
+                  name="message"
+                  id="message"
+                  cols="30"
+                  rows="10"
+                  class="contact__input-text"
+                  placeholder="Your message here.."
+                ></textarea>
+              </div>
+            </fieldset>
+            <button type="submit" class="button buttontext contact__button">Submit</button>
+          </form>
+        </div>
+        <aside class="fullcontent__sidebar section__contrast">
+          <div class="sidebar">
+            <h2 class="sidebar__title asideheader">Social Media</h2>
+            <div class="sidebar__links">
+              <ul class="sidebar__socialslist">
+                <li>
+                  <a href="https://www.facebook.com" class="sidebar__link sidebar__link--facebook links">
+                    <span class="fab fa-facebook"></span>Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.twitter.com" class="sidebar__link sidebar__link--twitter links">
+                    <span class="fab fa-twitter-square"></span>Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.discord.com" class="sidebar__link sidebar__link--discord links">
+                    <span class="fab fa-discord"></span>Discord
+                  </a>
+                </li>
+                <li>
+                  <a href="https://store.steampowered.com" class="sidebar__link sidebar__link--steam links">
+                    <span class="fab fa-steam"></span>Steam
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer>
+      <div class="pagewidth">
+        <p class="footertext">© 2021 Torbjørn Haukås</p>
+      </div>
+    </footer>
+    <script src="./js/script.js"></script>
+    <script src="./js/contact.js"></script>
     <script src="https://kit.fontawesome.com/ea2405e1e7.js" crossorigin="anonymous"></script>
   </body>
 </html>
