@@ -83,16 +83,18 @@
       <div class="fullcontent__container">
         <div class="fullcontent__article fullcontent__article--contact">
           <h1 class="fullcontent__title fullcontent__title--contact blogheader">Contact Me</h1>
-          <form action="submit" class="fullcontent__contact contact" method="GET" id="contact-form">
+          <form class="fullcontent__contact contact" method="GET" id="contact-form">
             <fieldset class="contact__fieldset">
               <legend class="visuallyhidden">Personal Details</legend>
               <div class="contact__input-wrap contact__input-wrap--name">
                 <label for="name" class="contact__label h3small">Your Name:</label>
                 <input type="text" name="name" id="name" class="contact__input-text" placeholder="Enter your name" />
+                <p class="error">Name must be more than 5 characters long</p>
               </div>
               <div class="contact__input-wrap contact__input-wrap--email">
                 <label for="email" class="contact__label h3small">Your Email:</label>
                 <input type="email" name="email" id="email" class="contact__input-text" placeholder="Enter your email address" />
+                <p class="error">Not a valid email address</p>
               </div>
             </fieldset>
             <fieldset class="contact__fieldset">
@@ -106,6 +108,7 @@
                   class="contact__input-text"
                   placeholder="Why are you contacting me?"
                 />
+                <p class="error">Subject must be more than 15 characters long</p>
               </div>
               <div class="contact__input-wrap contact__input-wrap--message">
                 <label for="message" class="contact__label h3small">Message:</label>
@@ -117,9 +120,10 @@
                   class="contact__input-text"
                   placeholder="Your message here.."
                 ></textarea>
+                <p class="error">Message must be more than 25 characters long</p>
               </div>
             </fieldset>
-            <button type="submit" class="button buttontext contact__button">Submit</button>
+            <button class="button buttontext contact__button">Submit</button>
           </form>
         </div>
         <aside class="fullcontent__sidebar section__contrast">

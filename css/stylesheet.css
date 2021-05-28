@@ -1252,10 +1252,11 @@ button.article__tag--news.buttontag--active {
   flex-flow: column;
 }
 .contact {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: calc(15px * -1);
+  margin: calc(-15px);
   max-width: 694px;
 }
 .contact > * {
@@ -1273,6 +1274,7 @@ button.article__tag--news.buttontag--active {
   color: var(--lightblack);
 }
 .contact__input-wrap {
+  position: relative;
   flex-basis: 100%;
   flex-grow: 1;
 }
@@ -1287,7 +1289,11 @@ button.article__tag--news.buttontag--active {
 }
 .contact__input-wrap--name,
 .contact__input-wrap--email {
+  align-self: flex-start;
   flex-basis: calc((600px - 100%) * 999);
+}
+textarea {
+  resize: vertical;
 }
 .contact__input-text {
   flex-grow: 1;
@@ -1295,10 +1301,47 @@ button.article__tag--news.buttontag--active {
   background-color: #fafafa;
   font-family: "Nunito", Arial, sans-serif;
   font-size: var(--bodysmall);
+  font-weight: 300;
   color: var(--black);
   min-height: 40px;
   padding: 15px 15px 10px;
   border-radius: 4px;
+}
+.errorborder {
+  border: 2px solid var(--red);
+}
+.error {
+  display: none;
+  margin-top: 5px;
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.8em;
+}
+.validated {
+  margin: 15px;
+  font-weight: 700;
+  color: rgb(19 97 0);
+  font-family: "Lato", Arial, sans-serif;
+  font-size: var(--h3main);
+  display: none;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 20px 15px;
+  left: 0;
+  right: 0;
+}
+.validated::before {
+  display: block;
+  border-radius: 4px;
+  border: 2px solid var(--green);
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 228, 125, 0.3);
 }
 @media only screen and (max-width: 360px) {
   /* I'm stumped as to why I have to do this, but I can't get these damn boxes to behave as I want them to */
