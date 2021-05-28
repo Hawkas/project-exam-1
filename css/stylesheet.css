@@ -1344,10 +1344,11 @@ textarea {
   background-color: rgba(0, 228, 125, 0.3);
 }
 @media only screen and (max-width: 360px) {
-  /* I'm stumped as to why I have to do this, but I can't get these damn boxes to behave as I want them to */
+  /* Brute forcing because I have no idea why they won't go lower than 360px in width */
   .contact__input-text,
   .contact__fieldset,
-  .contact {
+  .contact,
+  .validated {
     min-width: calc(100vw - 30px);
     max-width: calc(100vw - 30px);
   }
