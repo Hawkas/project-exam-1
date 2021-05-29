@@ -595,7 +595,7 @@ a {
   z-index: 2;
   padding-top: 184px;
   padding-top: clamp(184px, 152.2353px + 8.8235vw, 220px);
-  background-image: url("../media/herobannertransp1-570w.svg");
+  background-image: url("../media/herobannertransp2-570w.svg");
   background-repeat: no-repeat;
   background-size: auto;
   background-position: bottom left;
@@ -641,16 +641,17 @@ a {
   right: 0;
   opacity: 1;
   animation: WhiteBoard 2s ease-in-out 1s forwards;
+  animation-iteration-count: 1;
 }
 @media only screen and (min-width: 767px) {
   .hero__content {
     padding-top: 0;
-    background: url("../media/herobannertransp1-1000w.svg") no-repeat left/cover;
+    background: url("../media/herobannertransp2-1000w.svg") no-repeat left/cover;
   }
 }
 @media only screen and (min-width: 1368px) {
   .hero__content {
-    background-image: url("../media/herobannertransp1-1440w.svg");
+    background-image: url("../media/herobannertransp2-1440w.svg");
   }
 }
 .section {
