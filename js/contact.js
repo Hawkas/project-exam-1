@@ -99,7 +99,7 @@ button.addEventListener("click", submitForm);
 function checkParams() {
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
-  for (param of arguments) {
+  for (let param of arguments) {
     if (params.get(param)) {
       continue;
     } else return false;
