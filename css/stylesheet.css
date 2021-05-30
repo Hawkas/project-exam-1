@@ -1531,8 +1531,7 @@ button.article__tag--news.buttontag--active {
   border-radius: 4px;
   padding: 10px 15px 10px 5px;
   font-size: var(--bodysmall);
-  color: var(--gray);
-  line-height: auto;
+  color: var(--lightblack);
 }
 #sort::after {
   position: absolute;
