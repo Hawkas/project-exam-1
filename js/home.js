@@ -157,26 +157,28 @@ fetch(url)
       let carouselVisible = document.querySelector(".carousel__outer").getBoundingClientRect().width;
       let itemWidth = parseFloat(itemContainer.getBoundingClientRect().width);
       const pageCounter = document.querySelector(".carousel__pagecount");
+
       // Page count index
       let pages = 0;
 
       // Modifier to adjust for margins when moving
       let marginValue = parseFloat(window.getComputedStyle(itemContainer, null).getPropertyValue("margin-right"));
       let modifier = 0;
+      // Stuff for carousel sizing
+      //* To account for the width accurately I need to add the margins to each item, but only the ones between the visible items per page.
+      let perPage = Math.round(carouselVisible / (itemWidth + marginValue));
+      let pageAmount = carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage);
 
+      //* An item would be unreachable sometimes due to the rounding, so I have to manually make sure it rounds up on certain values only.
+      //* I want it to round up on 0.4 or 0.2 sometimes but not on 0.1. So I tried my hand at regEx and wrote this expression
+      if (/[1-9]\.[2-9][0-9]+/.test(pageAmount.toString())) {
+        pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
+      } else {
+        pageAmount = Math.round(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
+      }
       //? The Great Wall of Functions
 
       function getPageCount() {
-        let perPage = Math.round(carouselVisible / (itemWidth + marginValue));
-        // To account for the width accurately I need to add the margins to each item, but only the ones between the visible items per page.
-        let pageAmount = carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage);
-        // An item would be unreachable sometimes due to the rounding, so I have to manually make sure it rounds up on certain values only.
-        // I want it to round up on 0.4 or 0.2 sometimes but not on 0.1. So I tried my hand at regEx and wrote this expression
-        if (/[1-9]\.[2-9][0-9]+/.test(pageAmount.toString())) {
-          pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
-        } else {
-          pageAmount = Math.round(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
-        }
         pageCounter.innerHTML = "";
         for (let i = 1; i <= pageAmount; i++) {
           if (i === 1) {
@@ -187,7 +189,6 @@ fetch(url)
         }
       }
       function tabHandler(pageNumber) {
-        let perPage = parseInt(carouselVisible / itemWidth);
         let linkArray = document.querySelectorAll(".article__item--latest a");
         for (let link of linkArray) {
           link.tabIndex = -1;
@@ -266,7 +267,7 @@ fetch(url)
             left.tabIndex = 0;
           }
           tabHandler(pages);
-          carouselFull.style.transform = `translateX(-${pages * carouselVisible + modifier}px)`;
+          carouselFull.style.transform = `translateX(-${pages * (itemWidth * perPage + marginValue * perPage)}px)`;
           let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
           let prevPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages})`);
           nextPage.classList.add("currentpage");
@@ -293,7 +294,7 @@ fetch(url)
             right.tabIndex = 0;
           }
           tabHandler(pages);
-          carouselFull.style.transform = `translateX(-${pages * carouselVisible + modifier}px)`;
+          carouselFull.style.transform = `translateX(-${pages * (itemWidth * perPage + marginValue * perPage)}px)`;
 
           let nextPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 1})`);
           let prevPage = document.querySelector(`.carousel__pagecount button:nth-child(${pages + 2})`);
@@ -331,6 +332,14 @@ fetch(url)
         itemWidth = parseFloat(itemContainer.getBoundingClientRect().width);
         marginValue = parseFloat(window.getComputedStyle(itemContainer, null).getPropertyValue("margin-right"));
         pageButtons = document.querySelectorAll(".carousel__pagecount button");
+        perPage = Math.round(carouselVisible / (itemWidth + marginValue));
+        perPage = Math.round(carouselVisible / (itemWidth + marginValue));
+        pageAmount = carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage);
+        if (/[1-9]\.[2-9][0-9]+/.test(pageAmount.toString())) {
+          pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
+        } else {
+          pageAmount = Math.round(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
+        }
         modifier = 0;
         pages = 0;
         carouselFull.style.transform = "translateX(0)";
