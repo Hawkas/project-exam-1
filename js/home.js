@@ -165,12 +165,12 @@ fetch(url)
       let marginValue = parseFloat(window.getComputedStyle(itemContainer, null).getPropertyValue("margin-right"));
       let modifier = 0;
       // Stuff for carousel sizing
-      //* To account for the width accurately I need to add the margins to each item, but only the ones between the visible items per page.
+      //* To account for the width accurately I need to add the right-margins of each item, including the one that goes outside of the view
       let perPage = Math.round(carouselVisible / (itemWidth + marginValue));
       let pageAmount = carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage);
 
       //* An item would be unreachable sometimes due to the rounding, so I have to manually make sure it rounds up on certain values only.
-      //* I want it to round up on 0.4 or 0.2 sometimes but not on 0.1. So I tried my hand at regEx and wrote this expression
+      //* I want it to round up on 0.4 or 0.25-0.3 sometimes but not on 0.1. So I tried my hand at regEx and wrote this expression
       if (/[1-9]\.[2-9][0-9]+/.test(pageAmount.toString())) {
         pageAmount = Math.ceil(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
       } else {
