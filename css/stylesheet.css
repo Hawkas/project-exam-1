@@ -601,7 +601,6 @@ a {
   font-size: var(--h1big);
   line-height: 80%;
   text-transform: uppercase;
-  text-shadow: -4px 0px 0px rgba(43, 43, 43, 0.25), 0px 1px 8px rgba(43, 43, 43, 0.15);
 }
 .gigaheader__spacing {
   display: block;

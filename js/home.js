@@ -163,7 +163,6 @@ fetch(url)
 
       // Modifier to adjust for margins when moving
       let marginValue = parseFloat(window.getComputedStyle(itemContainer, null).getPropertyValue("margin-right"));
-      let modifier = 0;
       // Stuff for carousel sizing
       //* To account for the width accurately I need to add the right-margins of each item, including the one that goes outside of the view
       let perPage = Math.round(carouselVisible / (itemWidth + marginValue));
@@ -206,13 +205,11 @@ fetch(url)
         if (this.classList.contains("currentpage")) return;
         else {
           let goal = parseInt(this.dataset.page);
-          let mod = marginValue * goal;
 
           // Setting incremental variables to the current page
           pages = goal;
-          modifier = mod;
 
-          carouselFull.style.transform = `translateX(-${goal * carouselVisible + mod}px)`;
+          carouselFull.style.transform = `translateX(-${goal * (itemWidth * perPage + marginValue * perPage)}px)`;
           tabHandler(goal);
           for (let button of pageButtons) {
             if (button.classList.contains("currentpage")) {
@@ -245,7 +242,6 @@ fetch(url)
               right.classList.add("show");
               right.tabIndex = 0;
             }
-            modifier = 0;
           }
         }
       }
@@ -261,7 +257,6 @@ fetch(url)
         else {
           // Increment pages for accurate transform distance
           pages++;
-          modifier += marginValue;
           if (!left.classList.contains("show")) {
             left.classList.add("show");
             left.tabIndex = 0;
@@ -275,7 +270,6 @@ fetch(url)
 
           // If the multiplied width of the translate value, minus width of an item, is higher than the full carousel, disable the button.
           let compareDeficit = carouselFull.getBoundingClientRect().width - pages * carouselVisible - itemWidth;
-          // console.log(compareDeficit);
           if (compareDeficit < carouselVisible) {
             right.classList.remove("show");
             right.tabIndex = -1;
@@ -288,7 +282,6 @@ fetch(url)
         if (!left.classList.contains("show")) return;
         else {
           pages--;
-          modifier -= marginValue;
           if (!right.classList.contains("show")) {
             right.classList.add("show");
             right.tabIndex = 0;
@@ -303,7 +296,6 @@ fetch(url)
           if (pages === 0) {
             left.classList.remove("show");
             left.tabIndex = -1;
-            modifier = 0;
           }
         }
       });
@@ -340,7 +332,6 @@ fetch(url)
         } else {
           pageAmount = Math.round(carouselFull.getBoundingClientRect().width / (itemWidth * perPage + marginValue * perPage));
         }
-        modifier = 0;
         pages = 0;
         carouselFull.style.transform = "translateX(0)";
         tabHandler(pages);
